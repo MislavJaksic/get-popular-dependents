@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gpd"
-version = "0.0.1"
+version = "1.0.1"
 description = "Get a list of popular projects that use a library."
 
 license = "MIT"

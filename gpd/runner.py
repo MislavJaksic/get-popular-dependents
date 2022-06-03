@@ -23,8 +23,6 @@ from gpd.dependents_stats import DependentsStats
 from gpd.models.dependent import Dependent
 from gpd.parsers.table_page_parser import TablePageParser
 
-log_message = "library_url={library_url}, next_url={next_url}, page_number={page_number}, request={request}"
-
 
 def main() -> int:
     """main() will be run if you run this script directly"""
@@ -51,6 +49,7 @@ def get_dependents(owner: str, project: str, max_page: int) -> List[Dependent]:
     dependents: List[Dependent] = []
     estimated_pages = get_estimate_of_dependent_pages(next_url)
     try:
+        logger.info("start_url={start_url}, max_page={max_page}, estimated_pages={estimated_pages}", start_url=next_url, max_page=max_page, estimated_pages=estimated_pages)
         for page_number in tqdm(range(min(estimated_pages, max_page))):
             request = requests.get(next_url)
             parser = TablePageParser(request.text)
@@ -62,7 +61,7 @@ def get_dependents(owner: str, project: str, max_page: int) -> List[Dependent]:
             if not next_url:
                 break
     except:
-        logger.exception(log_message, library_url='https://github.com/{}/{}/network/dependents'.format(owner, project), next_url=next_url, page_number=page_number, request=request)
+        logger.exception("start_url={start_url}, next_url={next_url}, page_number={page_number}, request={request}", start_url='https://github.com/{}/{}/network/dependents'.format(owner, project), next_url=next_url, page_number=page_number, request=request)
         if request:
             with open("latest-error.html", 'wb') as f:
                 f.write(request.content)
@@ -75,8 +74,8 @@ def get_estimate_of_dependent_pages(url: str):
     return int(dependents_estimate * 1.2 / 30)
 
 def get_cli_arguments() -> Dict[str, Any]:
-    parser = argparse.ArgumentParser(description="Welcome to the command line interface!",
-                                     epilog="Thank you for using the program!")
+    parser = argparse.ArgumentParser(description="",
+                                     epilog="")
 
     parser.add_argument("-o", "--owner", required=True, help="Project owner. For example 'github' in 'https://github.com/github/advisory-database'.")
     parser.add_argument("-n", "--name", required=True, help="Project name. For example 'advisory-database' in 'https://github.com/github/advisory-database'.")

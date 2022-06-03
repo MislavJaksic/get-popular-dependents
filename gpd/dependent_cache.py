@@ -28,6 +28,7 @@ class DependentCache:
             logger.exception("path={path}", path=self.path)
 
     def dependents_to_file(self, dependents: List[Dependent]) -> None:
-        with open(self.path, 'wb') as f:
-            pickle.dump(dependents, f)
+        if dependents:
+            with open(self.path, 'wb') as f:
+                pickle.dump(dependents, f)
 
