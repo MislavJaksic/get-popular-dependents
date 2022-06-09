@@ -153,4 +153,5 @@ cython_debug/
 
 # Additional ignore
 .idea/
-cache/*
+.gpd_cache/
+latest-error.html

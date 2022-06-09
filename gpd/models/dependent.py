@@ -7,3 +7,6 @@ class Dependent(BaseModel):
     forks: int
     author: str
     url: str
+
+    def __hash__(self):
+        return hash((self.name, self.stars, self.forks, self.author, self.url))

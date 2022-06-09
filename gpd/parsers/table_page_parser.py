@@ -13,7 +13,11 @@ class TablePageParser:
         self.soup = BeautifulSoup(html, "html.parser")
 
     def get_dependents_estimate(self) -> int:
-        estimate = self.soup.find("a", class_="btn-link selected").text.strip().replace(",", "")
+        estimate = (
+            self.soup.find("a", class_="btn-link selected")
+            .text.strip()
+            .replace(",", "")
+        )
         return int(estimate.split("\n")[0])
 
     def get_dependents(self) -> List[Dependent]:
@@ -26,7 +30,7 @@ class TablePageParser:
         return self.soup.findAll("div", {"class": "Box-row"})
 
     def get_next_page_url(self) -> str:
-        for tag in self.soup.find("div", {"class": "paginate-container"}).findAll('a'):
+        for tag in self.soup.find("div", {"class": "paginate-container"}).findAll("a"):
             if tag.text == "Next":
                 return tag["href"]
         return ""

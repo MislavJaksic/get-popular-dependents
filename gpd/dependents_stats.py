@@ -1,4 +1,4 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Set
 
 from tabulate import tabulate
 
@@ -8,8 +8,8 @@ from gpd.models.dependent import Dependent
 class DependentsStats:
     dependents: List[Dependent]
 
-    def __init__(self, dependents: List[Dependent]):
-        self.dependents = dependents
+    def __init__(self, dependents: Set[Dependent]):
+        self.dependents = list(dependents)
 
     def get_count(self):
         return len(self.dependents)
@@ -26,7 +26,7 @@ class DependentsStats:
         return tabulate(self._group_dependents_by_key(dependents), headers="keys")
 
     def _group_dependents_by_key(self, dependents: List[Dependent]) -> Dict[str, Any]:
-        groups = {}
+        groups: Dict[str, Any] = {}
         for dependent in dependents:
             for key, value in dependent.dict().items():
                 if groups.get(key):

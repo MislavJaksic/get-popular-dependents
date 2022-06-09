@@ -44,15 +44,18 @@ class TestGetStars:
         data = middle_page_parser.get_stars()
         assert data == 0
 
+
 class TestGetForks:
     def test_get_forks(self, middle_page_parser):
         data = middle_page_parser.get_forks()
         assert data == 0
 
+
 class TestGetUrl:
     def test_get_url(self, middle_page_parser):
         data = middle_page_parser.get_url()
         assert data == "https://github.com/vutran1710/Crypto-Code"
+
 
 class TestGetUrlifyForGithub:
     def test_github_https_url(self, middle_page_parser):
@@ -70,12 +73,20 @@ class TestGetUrlifyForGithub:
         data = middle_page_parser.urlify_for_github(text)
         assert data == "https://github.com{}".format(text)
 
+
 class TestGetHref:
     def test_get_href(self, middle_page_parser):
         data = middle_page_parser.get_href()
         assert data == "https://github.com/vutran1710/Crypto-Code"
 
+
 class TestToDict:
     def test_to_dict(self, middle_page_parser):
         data = middle_page_parser.to_dict()
-        assert data == {'author': 'vutran1710', 'forks': 0, 'name': 'Crypto-Code', 'stars': 0, "url": "https://github.com/vutran1710/Crypto-Code"}
+        assert data == {
+            "author": "vutran1710",
+            "forks": 0,
+            "name": "Crypto-Code",
+            "stars": 0,
+            "url": "https://github.com/vutran1710/Crypto-Code",
+        }

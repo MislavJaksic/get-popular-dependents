@@ -1,6 +1,6 @@
 ## GPD: Get Popular Dependents
 
-Want to know which popular projects use a GitHub library? GPD helps you find how popular projects use your favourite library.  
+Want to know which popular projects use a library published on GitHub? GPD helps you find how popular projects use a library in production, so you can learn how to use it too.  
 
 ## Install
 
@@ -24,7 +24,7 @@ optional arguments:
 ```
 
 ```
-$: poetry run gpd -o  samuelcolvin -n pydantic
+$: poetry run gpd -o samuelcolvin -n pydantic
 name                             stars    forks  author          url
 -----------------------------  -------  -------  --------------  ---------------------------------------------------------
 ansible                          53318    21956  ansible         https://github.com/ansible/ansible
@@ -49,7 +49,7 @@ edx-platform                      6017     3277  openedx         https://github.
 DeepPavlov                        5754     1034  deepmipt        https://github.com/deepmipt/DeepPavlov
 ```
 
-Note: you can only search libraries published on GitHub. For example, you cannot find which GitHub projects use Python's [asyncio](https://docs.python.org/3/library/asyncio.html).  
+Note: you can only search libraries published on GitHub. For example, you cannot find projects that use Python's [asyncio](https://docs.python.org/3/library/asyncio.html).  
 
 ## Development
 
